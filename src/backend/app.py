@@ -11,7 +11,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from Rx.core import get_score, load_config
 from dnsquery.domain_features import get_domain_features
 from tinylogging import new_event
-from CoreML.predict import predict as ml_predict
+from CoreML.predict import predict as ml_predict, MODELS_AVAILABLE as ML_MODELS_AVAILABLE
 
 app = Flask(__name__)
 CORS(app)
@@ -36,7 +36,11 @@ class LogCapture:
 
 @app.route('/api/health', methods=['GET'])
 def health():
-    return jsonify({'status': 'healthy', 'timestamp': datetime.now().isoformat()})
+    return jsonify({
+        'status': 'healthy',
+        'timestamp': datetime.now().isoformat(),
+        'ml_models_available': ML_MODELS_AVAILABLE
+    })
 
 @app.route('/api/analyze', methods=['POST'])
 def analyze_domain():

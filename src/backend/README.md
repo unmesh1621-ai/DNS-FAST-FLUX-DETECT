@@ -40,7 +40,7 @@ pip install -r requirements.txt
 python app.py
 ```
 
-Server starts on `http://0.0.0.0:5000`
+Server starts on `http://0.0.0.0:5001`
 
 ## API Reference
 
@@ -129,7 +129,7 @@ Create `.env` file:
 FLASK_ENV=development
 FLASK_DEBUG=True
 FLASK_HOST=0.0.0.0
-FLASK_PORT=5000
+FLASK_PORT=5001
 ```
 
 ## Features
@@ -178,11 +178,11 @@ FLASK_PORT=5000
 ## Testing
 
 ```bash
-curl -X POST http://localhost:5000/api/analyze \
+curl -X POST http://localhost:5001/api/analyze \
   -H "Content-Type: application/json" \
   -d '{"domain":"example.com"}'
 
-curl http://localhost:5000/api/stats
+curl http://localhost:5001/api/stats
 ```
 
 ## Production Deployment
@@ -201,7 +201,7 @@ curl http://localhost:5000/api/stats
 
 ```bash
 pip install gunicorn
-gunicorn -w 4 -b 0.0.0.0:5000 app:app
+gunicorn -w 4 -b 0.0.0.0:5001 app:app
 ```
 
 ### Docker Deployment
@@ -212,8 +212,8 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY . .
-EXPOSE 5000
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app:app"]
+EXPOSE 5001
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5001", "app:app"]
 ```
 
 ## Dependencies
@@ -230,8 +230,8 @@ CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app:app"]
 
 **Port already in use:**
 ```bash
-netstat -ano | findstr :5000  # Windows
-lsof -i :5000  # Linux/Mac
+netstat -ano | findstr :5001  # Windows
+lsof -i :5001  # Linux/Mac
 ```
 
 **DNS resolution failing:**

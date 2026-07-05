@@ -50,6 +50,7 @@ def get_score(domain: str):
     max_score = 0
     total_score = 0
     features = get_domain_features(domain, dns_server, timeout)
+    features = {k: (0 if v is None else v) for k, v in features.items()}
 
     idx = 0
 

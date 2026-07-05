@@ -243,7 +243,7 @@ function App() {
       link.setAttribute('download', 'fastflux_analysis.csv');
       document.body.appendChild(link);
       link.click();
-      link.parentChild.removeChild(link);
+      link.parentNode.removeChild(link);
     } catch (err) {
       console.error('Export failed:', err);
     }
@@ -277,7 +277,7 @@ function App() {
     link.setAttribute('download', 'ml_predictions.csv');
     document.body.appendChild(link);
     link.click();
-    link.parentChild.removeChild(link);
+    link.parentNode.removeChild(link);
   };
 
   const handleMlHistoryClick = (historyItem) => {

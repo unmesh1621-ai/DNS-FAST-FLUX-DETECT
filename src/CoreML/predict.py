@@ -2,9 +2,18 @@ import joblib
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
-scaler = joblib.load(BASE_DIR / "scaler.pkl")
-rf_model = joblib.load(BASE_DIR / "rf_model.pkl")
-gb_model = joblib.load(BASE_DIR / "gb_model.pkl")
+
+try:
+    scaler = joblib.load(BASE_DIR / "scaler.pkl")
+    rf_model = joblib.load(BASE_DIR / "rf_model.pkl")
+    gb_model = joblib.load(BASE_DIR / "gb_model.pkl")
+    MODELS_AVAILABLE = True
+except FileNotFoundError:
+    scaler = None
+    rf_model = None
+    gb_model = None
+    MODELS_AVAILABLE = False
+
 
 def predict(ip_count: float,
                  ttl_median: float,
@@ -25,6 +34,11 @@ def predict(ip_count: float,
         rf - Random Forest
         gb - Gradient Boosting
     """
+    if not MODELS_AVAILABLE:
+        raise RuntimeError(
+            "ML models are not trained yet. Run CoreML/train.py to generate "
+            "scaler.pkl, rf_model.pkl and gb_model.pkl."
+        )
 
     X_new = [[ip_count, ttl_median, asn_count, country_count, domain_age_days]]
 
