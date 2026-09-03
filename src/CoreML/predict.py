@@ -8,11 +8,13 @@ try:
     rf_model = joblib.load(BASE_DIR / "rf_model.pkl")
     gb_model = joblib.load(BASE_DIR / "gb_model.pkl")
     MODELS_AVAILABLE = True
-except FileNotFoundError:
+except Exception as e:
+    print(f"Warning: Failed to load ML models ({e})")
     scaler = None
     rf_model = None
     gb_model = None
     MODELS_AVAILABLE = False
+
 
 
 def predict(ip_count: float,
