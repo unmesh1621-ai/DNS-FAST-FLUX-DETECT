@@ -34,7 +34,16 @@ class LogCapture:
     def flush(self):
         pass
 
+@app.route('/', methods=['GET'])
+def index():
+    return jsonify({
+        'message': 'Fast Flux Detection API is running',
+        'health_check': '/api/health',
+        'timestamp': datetime.now().isoformat()
+    })
+
 @app.route('/api/health', methods=['GET'])
+
 def health():
     return jsonify({
         'status': 'healthy',
