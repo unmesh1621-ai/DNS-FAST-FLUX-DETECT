@@ -12,7 +12,7 @@ import HistoryTable from './components/HistoryTable';
 import StatsPanel from './components/StatsPanel';
 import './index.css';
 
-const API_BASE = 'http://localhost:5001/api';
+const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
 
 function App() {
   const [domain, setDomain] = useState('');

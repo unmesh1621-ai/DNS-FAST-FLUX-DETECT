@@ -8,3 +8,4 @@ pandas==2.0.3
 joblib==1.5.2
 scikit-learn==1.7.2
 python-whois==0.9.6
+gunicorn
