@@ -28,6 +28,7 @@ whitelist.txt
 # (Generated artifacts)
 # ==================================================
 *.pkl
+!src/CoreML/*.pkl
 *.joblib
 *.h5
 *.pt
@@ -36,6 +37,8 @@ whitelist.txt
 # GEOLOCATION DATABASES (MaxMind etc.)
 # ==================================================
 GeoLite2-*.mmdb
+!src/config/GeoLite2-*.mmdb
+
 
 # ==================================================
 # LOGS / RUNTIME OUTPUT
